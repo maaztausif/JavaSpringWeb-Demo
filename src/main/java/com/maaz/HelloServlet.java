@@ -6,10 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/hello")
-public class HelloServlet extends HttpServlet {
+import java.io.IOException;
 
-    public void service(HttpServletRequest req, HttpServletResponse res){
-        System.out.println("In Service ");
+//@WebServlet("/hello")
+public class HelloServlet extends HttpServlet {
+    @Override
+    public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        res.setContentType("text/plain");
+        res.getWriter().write("Hello from HelloServlet!");
+        System.out.println("In Service");
     }
 }

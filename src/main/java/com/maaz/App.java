@@ -6,16 +6,16 @@ import org.apache.catalina.startup.Tomcat;
 
 public class App
 {
-    public static void main( String[] args ) throws LifecycleException {
+    public static void main( String[] args ) throws LifecycleException
+    {
+        System.out.println("Starting Embedded Tomcat...");
 
-        System.out.println( "Hello World!" );
         Tomcat tomcat = new Tomcat();
+        tomcat.setPort(8080);
 
-        tomcat.setPort(8081);
-
-        Context context = tomcat.addContext("",null);
-        tomcat.addServlet(context,"HelloServlet", new HelloServlet());
-        context.addServletMappingDecoded("/hello","HelloServlet");
+        Context context = tomcat.addContext("", System.getProperty("java.io.tmpdir"));
+        tomcat.addServlet(context, "HelloServlet", new HelloServlet());
+        context.addServletMappingDecoded("/hello", "HelloServlet");
 
         tomcat.start();
         tomcat.getServer().await();
